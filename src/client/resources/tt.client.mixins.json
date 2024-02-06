@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "hisui.tt.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "TransparentToolTips",
+    "TransparentToolTipsOptionMixin",
+    "TransparentToolTipsVideoOptionsScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}
