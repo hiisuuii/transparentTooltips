@@ -5,7 +5,7 @@
   "client": [
     "TransparentToolTips",
     "TransparentToolTipsOptionMixin",
-    "TransparentToolTipsVideoOptionsScreenMixin"
+    "TransparentToolTipsAccessibilityOptionsScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
