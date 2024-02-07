@@ -2,10 +2,10 @@
 	"schemaVersion": 1,
 	"id": "tt",
 	"version": "${version}",
-	"name": "transparentTooltips",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Transparent Tooltips",
+	"description": "Simple configurable tooltip opacity!",
 	"authors": [
-		"Me!"
+		"hisui"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -15,27 +15,20 @@
 	"icon": "assets/tt/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"hisui.tt.TransparentTooltips"
-		],
 		"client": [
 			"hisui.tt.TransparentTooltipsClient"
 		]
 	},
 	"mixins": [
-		"tt.mixins.json",
 		{
 			"config": "tt.client.mixins.json",
 			"environment": "client"
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.15.6",
-		"minecraft": "~1.20.1",
+		"fabricloader": ">=0.15.0",
+		"minecraft": "*",
 		"java": ">=17",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
