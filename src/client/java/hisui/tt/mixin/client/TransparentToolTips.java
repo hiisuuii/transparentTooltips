@@ -1,19 +1,21 @@
 package hisui.tt.mixin.client;
 
 import hisui.tt.duck.GameOptionsAccess;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.tooltip.TooltipBackgroundRenderer;
+import net.minecraft.client.gui.screen.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.Slice;
 
-@Mixin(TooltipBackgroundRenderer.class)
+@Mixin(Screen.class)
 public abstract class TransparentToolTips {
-	@ModifyArg(method = "render(Lnet/minecraft/client/gui/DrawContext;IIIII)V",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/tooltip/TooltipBackgroundRenderer;renderRectangle(Lnet/minecraft/client/gui/DrawContext;IIIIII)V"), index = 6)
-	private static int MoreTranslucentTooltipsMod$renderRectangleModifyArg(int color) {
+	@ModifyConstant(method = "renderTooltipFromComponents",
+			constant = @Constant(intValue = -267386864), slice = @Slice(
+					from = @At(value = "CONSTANT", args = "intValue=-267386864",ordinal = 5),
+			to = @At(value = "CONSTANT", args = "intValue=-267386864",ordinal = 6)
+	))
+	private int MoreTranslucentTooltipsMod$modifyTooltipBackgroundColor(int color) {
 		var client = net.minecraft.client.MinecraftClient.getInstance();
 		var options = client.options;
 		int value = (int) (((GameOptionsAccess)options).transparentTooltips$getToolTipOpacity().getValue() * 255.0);
