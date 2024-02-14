@@ -11,6 +11,7 @@
 		"homepage": "https://modrinth.com/project/transparent-tooltips",
 		"sources": "https://github.com/hiisuuii/transparentTooltips"
 	},
+	"accessWidener": "tt.accesswidener",
 	"license": "MIT",
 	"icon": "assets/tt/icon.png",
 	"environment": "*",
