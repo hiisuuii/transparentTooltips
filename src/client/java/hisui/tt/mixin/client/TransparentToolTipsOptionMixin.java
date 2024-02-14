@@ -7,6 +7,9 @@ import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameOptions.class)
 public abstract class TransparentToolTipsOptionMixin implements GameOptionsAccess {
@@ -19,6 +22,7 @@ public abstract class TransparentToolTipsOptionMixin implements GameOptionsAcces
     @Unique
     private static final Text TOOLTIP_OPACITY_TOOLTIP = Text.translatable("options.toolTipOpacity.tooltip");
 
+    @Unique
     private final SimpleOption<Double> toolTipOpacity = new SimpleOption<>(
             "options.tooltip.opacity",
             SimpleOption.constantTooltip(TOOLTIP_OPACITY_TOOLTIP),
@@ -31,5 +35,10 @@ public abstract class TransparentToolTipsOptionMixin implements GameOptionsAcces
 
     public SimpleOption<Double> transparentTooltips$getToolTipOpacity(){
         return this.toolTipOpacity;
+    }
+
+    @Inject(method = "accept", at = @At("TAIL"))
+    private void inject(GameOptions.Visitor visitor, CallbackInfo ci){
+        visitor.accept("toolTipOpacity", this.toolTipOpacity);
     }
 }
