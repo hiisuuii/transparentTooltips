@@ -38,7 +38,7 @@ public abstract class TransparentToolTipsOptionMixin implements GameOptionsAcces
     }
 
     @Inject(method = "accept", at = @At("TAIL"))
-    private void inject(GameOptions.Visitor visitor, CallbackInfo ci){
+    private void transparentTooltips$saveOption(GameOptions.Visitor visitor, CallbackInfo ci){
         visitor.accept("toolTipOpacity", this.toolTipOpacity);
     }
 }
